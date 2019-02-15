@@ -5,12 +5,17 @@ const f = () => {
   let initialHTML: string = "";
 
   if (location.hash && location.hash.indexOf("#/") === 0) {
-    text = atob(location.hash.split("#/")[1]);
+    text = atob(location.hash.split("#/")[1].split("/")[0]);
     initialHTML = (<HTMLMainElement>main).innerHTML;
     (<HTMLMainElement>main).innerHTML = "Loading...";
     if (typeof (<any>window).snarkdown === "function")
       text = (<any>window).snarkdown(text);
     (<HTMLMainElement>main).innerHTML = text;
+    if (location.hash.split("#/")[1].split("/").length > 1) {
+      setTimeout(() => {
+        (<any>window).agastya.api("cssClass", location.hash.split("#/")[1].split("/")[1]);
+      }, 200);
+    }
   } else if (form) {
     form.addEventListener("submit", event => {
       const textarea: Element | null = document.querySelector("form textarea");

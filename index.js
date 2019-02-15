@@ -5,12 +5,17 @@ var f = function () {
     var text = "";
     var initialHTML = "";
     if (location.hash && location.hash.indexOf("#/") === 0) {
-        text = atob(location.hash.split("#/")[1]);
+        text = atob(location.hash.split("#/")[1].split("/")[0]);
         initialHTML = main.innerHTML;
         main.innerHTML = "Loading...";
         if (typeof window.snarkdown === "function")
             text = window.snarkdown(text);
         main.innerHTML = text;
+        if (location.hash.split("#/")[1].split("/").length > 1) {
+            setTimeout(function () {
+                window.agastya.api("cssClass", location.hash.split("#/")[1].split("/")[1]);
+            }, 200);
+        }
     }
     else if (form) {
         form.addEventListener("submit", function (event) {
