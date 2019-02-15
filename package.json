@@ -1,0 +1,16 @@
+{
+  "name": "agastya-reader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/OswaldLabsOpenSource/agastya-reader",
+  "author": "Anand Chowdhary <anandchowdhary@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc -w"
+  },
+  "devDependencies": {
+    "tsc": "^1.20150623.0",
+    "typescript": "^3.3.3"
+  }
+}
