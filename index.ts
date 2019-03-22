@@ -44,6 +44,19 @@ document.addEventListener('click', function (event) {
   }
 }, false);
 
+(<HTMLElement>document.querySelector("#show-more-options")).addEventListener("click", (this) => {
+  (<HTMLElement>document.querySelector("#show-more-options")).style.display = "none";
+  (<HTMLElement>document.querySelector("#more-options")).classList.remove("hidden");
+});
+
+(<HTMLElement>document.querySelector("#agastya-toggler")).addEventListener("click", (this) => {
+  (<HTMLElement>document.querySelector("#agastya-toggler .less")).classList.toggle("hidden");
+  (<HTMLElement>document.querySelector("#agastya-toggler .more")).classList.toggle("hidden");
+  (<HTMLElement>document.querySelector("#agastya-toggler .arrow-less")).classList.toggle("hidden");
+  (<HTMLElement>document.querySelector("#agastya-toggler .arrow-more")).classList.toggle("hidden");
+  (<HTMLElement>document.querySelector("#options-container")).classList.toggle("hidden");
+});
+
 window.addEventListener("hashchange", event => {
   f();
 });

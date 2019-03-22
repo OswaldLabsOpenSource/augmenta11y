@@ -39,6 +39,17 @@ document.addEventListener('click', function (event) {
         window.agastya.api("toggleMode", event.target.getAttribute("data-option"));
     }
 }, false);
+document.querySelector("#show-more-options").addEventListener("click", function () {
+    document.querySelector("#show-more-options").style.display = "none";
+    document.querySelector("#more-options").classList.remove("hidden");
+});
+document.querySelector("#agastya-toggler").addEventListener("click", function () {
+    document.querySelector("#agastya-toggler .less").classList.toggle("hidden");
+    document.querySelector("#agastya-toggler .more").classList.toggle("hidden");
+    document.querySelector("#agastya-toggler .arrow-less").classList.toggle("hidden");
+    document.querySelector("#agastya-toggler .arrow-more").classList.toggle("hidden");
+    document.querySelector("#options-container").classList.toggle("hidden");
+});
 window.addEventListener("hashchange", function (event) {
     f();
 });

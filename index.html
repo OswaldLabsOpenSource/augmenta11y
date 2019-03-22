@@ -9,15 +9,55 @@
             main { max-width: 600px; margin: auto; padding: 1rem; line-height: 1.65; }
             input, button, select, textarea { box-sizing: border-box; width: 100%; display: block; font: inherit; border: 1px solid #ddd; border-radius: 0.25rem; padding: 1rem; margin-bottom: 1rem; }
             button { width: auto; padding: 1rem 1.5rem; background-color: whitesmoke; font-weight: bold; }
-            #agastyaOptions { max-width: 600px; margin: auto; padding: 1rem; } #agastyaOptions button { display: inline-block; width: calc(50% - 0.5rem); box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1); border: 1px solid #ddd; } #agastyaOptions button:not(.full):nth-child(2n) { float: right; } #agastyaOptions button.full { width: 100%; }
+            a#show-more-options { text-align: center; text-decoration: underline; display: block; margin: 10px 0; }
+            a#agastya-toggler { text-align: center; font-weight: bold; display: block; margin: 10px 0; }
+            #agastyaOptions { max-width: 600px; margin: auto; padding: 1rem; background: whitesmoke; border-radius: 0.25rem; border: 1px solid #ddd; } #agastyaOptions button { display: inline-block; width: calc(50% - 0.5rem); box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1); border: 1px solid #ddd; } #agastyaOptions button:not(.full):nth-child(2n+1) { float: right; clear: both; } #agastyaOptions button.full { width: 100%; }
             #agastyaOptions button.dyslexia { width: 100%; background-color: #feed64; }
             #agastyaOptions button.blue-light-filter { width: 100%; background-color: #fec; }
             #agastyaOptions button.night { background-color: #1e2a35; color: #efefef; }
-            /* #agastyaOptions input[type="range"] { -webkit-appearance: none; appearance: none; border-color: #909090; background-color: #FFF; height: 5px; } */
-            /* #agastyaOptions button.read-aloud { background-color: #feed64; } */
+            #agastyaOptions .input-group { background-color: #FFF; padding: 1rem; border-radius: 0.25rem; box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1); border: 1px solid #ddd; margin-bottom: 1rem; }
+            #agastyaOptions input[type=range]{ -webkit-appearance:none; -moz-appearance:none; appearance:none; width:100%; margin:0; margin-top: 0.5rem; border: none; }
+            #agastyaOptions input[type=range]::-webkit-slider-runnable-track{width:100%;height:5px;cursor:pointer;background:#ccc;border-radius:25px;border:0 solid rgba(1, 1, 1, 0)}
+            #agastyaOptions input[type=range]::-webkit-slider-thumb{-webkit-box-shadow:0 4px 10px rgba(0, 0, 0, .35);box-shadow:0 4px 10px rgba(0, 0, 0, .35);border:1px solid #ddd;height:25px;width:25px;border-radius:50px;background:#fff; cursor:pointer;-webkit-appearance:none;margin-top:-10px}
+            #agastyaOptions input[type=range]:focus::-webkit-slider-runnable-track{background:#999}
+            #agastyaOptions input[type=range]::-moz-range-track{width:100%;height:5px;cursor:pointer;background:#aaa;border-radius:25px;border:0 solid rgba(1, 1, 1, 0)}
+            #agastyaOptions input[type=range]::-moz-range-thumb{box-shadow:0 4px 10px rgba(0, 0, 0, .35);border:1px solid #ddd;height:25px;width:25px;border-radius:50px;background:#fff;cursor:pointer}
+            #agastyaOptions input[type=range]::-ms-track{width:100%;height:5px;cursor:pointer;background:transparent;border-color:transparent;color:transparent}
+            #agastyaOptions input[type=range]::-ms-fill-lower{background:#00007a;border:0 solid rgba(1, 1, 1, 0);border-radius:50px}
+            #agastyaOptions input[type=range]::-ms-fill-upper{background:#aaa;border:0 solid rgba(1, 1, 1, 0);border-radius:50px}
+            #agastyaOptions input[type=range]::-ms-thumb{box-shadow:0 4px 10px rgba(0, 0, 0, .35);border:1px solid #ddd;height:25px;width:25px;border-radius:50px;background:#fff;cursor:pointer;height:5px}
+            .hidden { display: none; }
         </style>
     </head>
     <body>
+        <div id="agastyaOptions">
+            <a id="agastya-toggler"><span class="more">Open</span><span class="less hidden">Close</span> reader settings <span class="arrow-more">&#x25BC;</span><span class="arrow-less hidden">&#x25B2;</span></a>
+            <div id="options-container" class="hidden">
+                <button class="dyslexia filter" data-option="dyslexia">Dyslexia mode</button>
+                <button class="blue-light-filter full" data-option="blue-light-filter">Blue filter</button>
+                <button class="night" data-option="night">Night mode</button>
+                <button class="read-aloud" data-option="read-aloud">Read aloud</button>
+                <a id="show-more-options">Show more options</a>
+                <div id="more-options" class="hidden">
+                    <div class="input-group">
+                        <label for="font-size">Font size</label>
+                        <input name="font-size" type="range" min="80" max="150" step="5" value="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="font-size">Letter spacing</label>
+                        <input name="font-size" type="range" min="80" max="150" step="5" value="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="font-size">Line height</label>
+                        <input name="font-size" type="range" min="80" max="150" step="5" value="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="font-size">Word spacing</label>
+                        <input name="font-size" type="range" min="80" max="150" step="5" value="100">
+                    </div>
+                </div>
+            </div>
+        </div>
         <main>
             <h1>Test</h1>
             <form>
@@ -25,16 +65,6 @@
                 <button type="submit">Generate link</button>
             </form>
         </main>
-        <div id="agastyaOptions">
-            <button class="dyslexia filter" data-option="dyslexia">Dyslexia</button>
-            <button class="blue-light-filter full" data-option="blue-light-filter">Blue filter</button>
-            <button class="night" data-option="night">Night mode</button>
-            <button class="read-aloud" data-option="read-aloud">Read aloud</button>
-            <!-- <div class="input-group">
-                <label for="font-size">Font Size</label>
-                <input name="font-size" type="range">
-            </div> -->
-        </div>
         <script src="https://unpkg.com/snarkdown@1.2.2/dist/snarkdown.umd.js"></script>
         <script src="./index.js"></script>
         <script async defer src="https://staging-agastya-loader.oswaldlabs.com/augmenta11y.js"></script>
