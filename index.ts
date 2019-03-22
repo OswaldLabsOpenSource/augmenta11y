@@ -27,11 +27,22 @@ const f = () => {
       event.preventDefault();
       return false;
     });
+
   } else {
     (<HTMLMainElement>main).innerHTML = initialHTML;
   }
 };
 f();
+
+interface Window { a11ySettings: any; agastya: any }
+
+window.a11ySettings = window.a11ySettings || {};
+
+document.addEventListener('click', function (event) {
+  if ((<HTMLButtonElement>event.target).hasAttribute("data-option")) {
+    window.agastya.api("toggleMode", (<HTMLButtonElement>event.target).getAttribute("data-option"));
+  }
+}, false);
 
 window.addEventListener("hashchange", event => {
   f();

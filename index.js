@@ -33,6 +33,12 @@ var f = function () {
     }
 };
 f();
+window.a11ySettings = window.a11ySettings || {};
+document.addEventListener('click', function (event) {
+    if (event.target.hasAttribute("data-option")) {
+        window.agastya.api("toggleMode", event.target.getAttribute("data-option"));
+    }
+}, false);
 window.addEventListener("hashchange", function (event) {
     f();
 });
