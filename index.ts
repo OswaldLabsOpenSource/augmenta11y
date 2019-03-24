@@ -4,23 +4,23 @@ const f = () => {
   let text: string = "";
   let initialHTML: string = "";
 
-  if (location.hash && location.hash.indexOf("#/") === 0) {
-    text = atob(location.hash.split("#/")[1].split("/")[0]);
+  if (location.hash && location.hash.indexOf("text/") === 0) {
+    text = atob(location.hash.split("text/")[1].split("/")[0]);
     initialHTML = (<HTMLMainElement>main).innerHTML;
     (<HTMLMainElement>main).innerHTML = "Loading...";
     if (typeof (<any>window).snarkdown === "function")
       text = (<any>window).snarkdown(text);
     (<HTMLMainElement>main).innerHTML = text;
-    if (location.hash.split("#/")[1].split("/").length > 1) {
+    if (location.hash.split("text/")[1].split("/").length > 1) {
       setTimeout(() => {
-        (<any>window).agastya.api("cssClass", location.hash.split("#/")[1].split("/")[1]);
+        (<any>window).agastya.api("cssClass", location.hash.split("text/")[1].split("/")[1]);
       }, 200);
     }
   } else if (form) {
     form.addEventListener("submit", event => {
       const textarea: Element | null = document.querySelector("form textarea");
       if (textarea) text = (<HTMLInputElement>textarea).value;
-      const link: string = `${location.href.replace("index.html", "")}#/${btoa(
+      const link: string = `${location.href.replace("index.html", "")}text/${btoa(
         text
       )}`;
       location.href = link;
@@ -44,12 +44,12 @@ document.addEventListener('click', function (event) {
   }
 }, false);
 
-(<HTMLElement>document.querySelector("#show-more-options")).addEventListener("click", (this) => {
+(<HTMLElement>document.querySelector("#show-more-options")).addEventListener("click", () => {
   (<HTMLElement>document.querySelector("#show-more-options")).style.display = "none";
   (<HTMLElement>document.querySelector("#more-options")).classList.remove("hidden");
 });
 
-(<HTMLElement>document.querySelector("#agastya-toggler")).addEventListener("click", (this) => {
+(<HTMLElement>document.querySelector("#agastya-toggler")).addEventListener("click", () => {
   (<HTMLElement>document.querySelector("#agastya-toggler .less")).classList.toggle("hidden");
   (<HTMLElement>document.querySelector("#agastya-toggler .more")).classList.toggle("hidden");
   (<HTMLElement>document.querySelector("#agastya-toggler .arrow-less")).classList.toggle("hidden");
