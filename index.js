@@ -4,16 +4,16 @@ var f = function () {
     var form = document.querySelector("main form");
     var text = "";
     var initialHTML = "";
-    if (location.hash && location.hash.indexOf("text/") === 0) {
-        text = atob(location.hash.split("text/")[1].split("/")[0]);
+    if (location.href && location.href.indexOf("text/") === 0) {
+        text = atob(location.href.split("text/")[1].split("/")[0]);
         initialHTML = main.innerHTML;
         main.innerHTML = "Loading...";
         if (typeof window.snarkdown === "function")
             text = window.snarkdown(text);
         main.innerHTML = text;
-        if (location.hash.split("text/")[1].split("/").length > 1) {
+        if (location.href.split("text/")[1].split("/").length > 1) {
             setTimeout(function () {
-                window.agastya.api("cssClass", location.hash.split("text/")[1].split("/")[1]);
+                window.agastya.api("cssClass", location.href.split("text/")[1].split("/")[1]);
             }, 200);
         }
     }

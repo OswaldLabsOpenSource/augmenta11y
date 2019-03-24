@@ -4,16 +4,16 @@ const f = () => {
   let text: string = "";
   let initialHTML: string = "";
 
-  if (location.hash && location.hash.indexOf("text/") === 0) {
-    text = atob(location.hash.split("text/")[1].split("/")[0]);
+  if (location.href && location.href.indexOf("text/") === 0) {
+    text = atob(location.href.split("text/")[1].split("/")[0]);
     initialHTML = (<HTMLMainElement>main).innerHTML;
     (<HTMLMainElement>main).innerHTML = "Loading...";
     if (typeof (<any>window).snarkdown === "function")
       text = (<any>window).snarkdown(text);
     (<HTMLMainElement>main).innerHTML = text;
-    if (location.hash.split("text/")[1].split("/").length > 1) {
+    if (location.href.split("text/")[1].split("/").length > 1) {
       setTimeout(() => {
-        (<any>window).agastya.api("cssClass", location.hash.split("text/")[1].split("/")[1]);
+        (<any>window).agastya.api("cssClass", location.href.split("text/")[1].split("/")[1]);
       }, 200);
     }
   } else if (form) {
