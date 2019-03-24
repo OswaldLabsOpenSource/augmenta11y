@@ -39,10 +39,21 @@ document.addEventListener('click', function (event) {
   }
 }, false);
 
+document.addEventListener('input', function (event) {
+  if ((<HTMLButtonElement>event.target).hasAttribute("data-option")) {
+    let property: any = {};
+    let key = (<HTMLButtonElement>event.target).getAttribute("data-option");
+    property[String(key)] = (<HTMLButtonElement>event.target).value;
+    window.agastya.api("customize", property);
+  }
+}, false);
+
+
 (<HTMLElement>document.querySelector("#show-more-options")).addEventListener("click", () => {
   (<HTMLElement>document.querySelector("#show-more-options")).style.display = "none";
   (<HTMLElement>document.querySelector("#more-options")).classList.remove("hidden");
 });
+
 
 (<HTMLElement>document.querySelector("#agastya-toggler")).addEventListener("click", () => {
   (<HTMLElement>document.querySelector("#agastya-toggler .less")).classList.toggle("hidden");

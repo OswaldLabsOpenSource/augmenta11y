@@ -34,6 +34,14 @@ document.addEventListener('click', function (event) {
         window.agastya.api("toggleMode", event.target.getAttribute("data-option"));
     }
 }, false);
+document.addEventListener('input', function (event) {
+    if (event.target.hasAttribute("data-option")) {
+        var property = {};
+        var key = event.target.getAttribute("data-option");
+        property[String(key)] = event.target.value;
+        window.agastya.api("customize", property);
+    }
+}, false);
 document.querySelector("#show-more-options").addEventListener("click", function () {
     document.querySelector("#show-more-options").style.display = "none";
     document.querySelector("#more-options").classList.remove("hidden");
