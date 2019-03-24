@@ -4,23 +4,18 @@ const f = () => {
   let text: string = "";
   let initialHTML: string = "";
 
-  if (location.href && location.href.indexOf("text/") === 0) {
+  if (location.href && location.href.indexOf("text/") !== -1) {
     text = atob(location.href.split("text/")[1].split("/")[0]);
     initialHTML = (<HTMLMainElement>main).innerHTML;
     (<HTMLMainElement>main).innerHTML = "Loading...";
     if (typeof (<any>window).snarkdown === "function")
       text = (<any>window).snarkdown(text);
     (<HTMLMainElement>main).innerHTML = text;
-    if (location.href.split("text/")[1].split("/").length > 1) {
-      setTimeout(() => {
-        (<any>window).agastya.api("cssClass", location.href.split("text/")[1].split("/")[1]);
-      }, 200);
-    }
   } else if (form) {
     form.addEventListener("submit", event => {
       const textarea: Element | null = document.querySelector("form textarea");
       if (textarea) text = (<HTMLInputElement>textarea).value;
-      const link: string = `${location.href.replace("index.html", "")}text/${btoa(
+      const link: string = `$/text/${btoa(
         text
       )}`;
       location.href = link;
